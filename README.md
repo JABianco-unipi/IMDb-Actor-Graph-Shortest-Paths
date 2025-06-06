@@ -9,7 +9,7 @@ Ogni elemento contiene:
    - padre: un puntatore al nodo predecessore lungo il cammino,
 
    - next: il puntatore al prossimo elemento nella lista.
-
+C
 typedef struct elem{
     struct elem *padre; // padre dell'elemento
     int attore; // attore contenuto nell'elemento

@@ -12,5 +12,6 @@ Ogni elemento contiene:
 
 La coda stessa (struct fifo, alias risolti) mantiene i puntatori alla testa e alla coda della lista, così da permettere efficientemente le operazioni di inserimento in coda (push) e di estrazione dalla testa (pop), come richiesto da una vera FIFO.
 # ricostruzione del cammino minimo
-Per poter ricostruire il cammino minimo il programma parte, se viene trovato, dal nodo di arrivo <mark>risultato</mark> e da quest'ultimo vengono percorsi i puntatori a padre che risalgono fino al nodo sorgente che è quello che ha il padre a NULL; per questo è stata implementata la funzione <mark>stampa_attori</mark> che ha lo scopo di risalire ricorsivamente il cammino e stampare in ordine tale cmmmino sul file di output.
+Per ricostruire il cammino minimo, una volta trovato, il programma parte dal nodo di arrivo (risultato) e risale la catena dei puntatori padre fino a raggiungere il nodo sorgente, riconoscibile perché il suo campo padre è impostato a NULL.
+A questo scopo è stata implementata la funzione stampa_attori, che risale ricorsivamente il percorso a ritroso e stampa, nell’ordine corretto, tutti gli attori coinvolti nel cammino sul file di output.
 

@@ -1,7 +1,33 @@
 # EsameLab2
 Consegna progetto Lab2
+# parsing delle righe del file di testo name.basics.tsv
+per memorizzare le informazioni prese dal file name.basics.tsv è stata utilizzata una `HashMap`che viene popolata classe `CreaGrafo` che, a ogni lettura di riga da file vine chiamata la funzione `split`che crea l'array di controllo che serve per capire se i campi sono esattamente 6 e per capire, come da indicazioni del testo, quali righe non vanno considerate.
+in particolare:
+nomi che contengono \N nel campo data di nascita (birthYear):
+```java
+if(controllo[2].trim().equals("\\N")){
+   continue; // salta gli attori senza anno di nascita
+}
+```
+nomi che non contengono le parole actor o actress nel quinto campo (primaryProfession):
+```java
+boolean trovato = false;
+// controllo se l'attore è un attore o un'attrice
+for(String x : controllo) {
+   if(x.trim().equals("actor") || x.trim().equals("actress")) {
+      trovato = true; // l'attore è un attore o un'attrice
+      break;
+   }
+}
+if(!trovato) {
+   continue; // salta gli attori che non sono attori o attrici
+}
+```
+
+
+
 # implementazione della coda FIFO nell'algoritmo della BFS
-Nel mio programma, la coda FIFO necessaria per la BFS è implementata tramite una lista collegata (linked list) di puntatori a elementi, dove ciascun elemento è una struttura (struct elem, alias elemento) che rappresenta un nodo della coda.
+Nel programma, la coda FIFO necessaria per la BFS è implementata tramite una lista collegata (linked list) di puntatori a elementi, dove ciascun elemento è una struttura (struct elem, alias elemento) che rappresenta un nodo della coda.
 Ogni elemento contiene:
 
    - attore: il codice numerico dell’attore associato a quel nodo,
@@ -96,6 +122,5 @@ Come da consegna ,dopo che aver aspettato `20s`, vengono deallocate le strutture
     return 0;
 }
 ```
-
 
 

@@ -48,7 +48,6 @@ if(attori.containsKey(a.getcodice())) {
    attori.put(a.getcodice(), a);
 }
 ```
-
 # implementazione della coda FIFO nell'algoritmo della BFS
 Nel programma, la coda FIFO necessaria per la BFS è implementata tramite una lista collegata (linked list) di puntatori a elementi, dove ciascun elemento è una struttura (struct elem, alias elemento) che rappresenta un nodo della coda.
 Ogni elemento contiene:

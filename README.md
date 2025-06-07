@@ -1,8 +1,8 @@
 # EsameLab2
 Consegna progetto Lab2
 # parsing delle righe del file di testo name.basics.tsv
-Per memorizzare le informazioni prese dal file name.basics.tsv è stata utilizzata una `HashMap`che viene popolata classe `CreaGrafo` che, a ogni lettura di riga da file vine chiamata la funzione `split`che crea l'array di controllo che serve per capire se i campi sono esattamente 6 e per capire, come da indicazioni del testo, quali righe non vanno considerate.  
-in particolare:  
+Per memorizzare le informazioni prese dal file name.basics.tsv è stata utilizzata una `HashMap`, che viene popolata all’interno della classe `CreaGrafo`. Ad ogni riga letta dal file viene chiamata la funzione `split`, che crea l’array di controllo utile per verificare se i campi sono esattamente 6 e per capire, come da indicazioni del testo, quali righe non devono essere considerate.
+In particolare:  
 nomi che contengono `\N` nel campo data di nascita (birthYear):
 ```java
 if(controllo[2].trim().equals("\\N")){
@@ -23,9 +23,9 @@ if(!trovato) {
    continue; // salta gli attori che non sono attori o attrici
 }
 ```
-Dopo le opportune verifiche sulle linee lette viene crata una nuova istanza della classe `Attori` che contine oltre al costruttore principale anche uno alternativo dedicato al caso in cui si voglia istanziare un nuovo attore a partire da una `String`(la linea letta da file. Qui infatti vengono riempite le variabili che rappresentano l'oggetto. 
-Viene rifatto il controllo sulla lunghezza della riga splittata e poi vengono riempite le varibili di istanza: `codice`, `nome`, `anno` e, chiaramente, viene dichiarata la collezione `coprotagonisti` che servirà per il raccogliere le informazioni provenienti dal parsing di title.principals.tsv.  
-Costruttore della classe `Attori`:  
+Dopo le opportune verifiche sulle righe lette, viene creata una nuova istanza della classe `Attori`, che contiene, oltre al costruttore principale, anche uno alternativo dedicato al caso in cui si voglia istanziare un nuovo attore a partire da una `String` (la riga letta da file). Qui infatti vengono riempite le variabili che rappresentano l’oggetto.
+Viene rifatto il controllo sulla lunghezza della riga splittata e poi vengono riempite le variabili di istanza: `codice`, `nome`, `anno` e, chiaramente, viene dichiarata la collezione `coprotagonisti`, che servirà per raccogliere le informazioni provenienti dal parsing di `title.principals.tsv.  
+Costruttore della classe `Attori`:
 ```java
 public Attori(String a){
    String[] campi = a.split("\t");
@@ -39,7 +39,7 @@ public Attori(String a){
    this.coprotagonisti = new HashSet<Integer>();
 }
 ```
-Alla fine se il codice dell'Attore appena stanziato, preso con `getcodice()`, non era già presenta nell'HashMap `attori` viene aggiunto alla collezione come si può vedere da qui:  
+Alla fine, se il codice dell'attore appena stanziato, preso con `getcodice()`, non era già presenta nell'HashMap `attori` viene aggiunto alla collezione, come si può vedere da qui:  
 ```java
 Attori a = new Attori(Linea);
 if(attori.containsKey(a.getcodice())) {

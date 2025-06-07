@@ -24,7 +24,7 @@ if(!trovato) {
 }
 ```
 Dopo le opportune verifiche sulle righe lette, viene creata una nuova istanza della classe `Attori`, che contiene, oltre al costruttore principale, anche uno alternativo dedicato al caso in cui si voglia istanziare un nuovo attore a partire da una `String` (la riga letta da file). Qui infatti vengono riempite le variabili che rappresentano l’oggetto.
-Viene rifatto il controllo sulla lunghezza della riga splittata e poi vengono riempite le variabili di istanza: `codice`, `nome`, `anno` e, chiaramente, viene dichiarata la collezione `coprotagonisti`, che servirà per raccogliere le informazioni provenienti dal parsing di `title.principals.tsv.  
+Viene rifatto il controllo sulla lunghezza della riga splittata e poi vengono riempite le variabili di istanza: `codice`, `nome`, `anno` e, chiaramente, viene dichiarata la collezione `coprotagonisti`, che servirà per raccogliere le informazioni provenienti dal parsing di `title.principals.tsv.`  
 Costruttore della classe `Attori`:
 ```java
 public Attori(String a){

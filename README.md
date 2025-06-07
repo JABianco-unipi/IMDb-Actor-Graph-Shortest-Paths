@@ -45,7 +45,7 @@ typedef struct {
 Lo scopo di tale variabile è quello di tenere traccia delle fasi cronologiche del programma durante l'esecuzione.
 Inizialmente infatti la variabile, essendo nella fase iniziale, viene inizializzata a 0 e, in questo caso, se arrivasse un `SIGINT` il thread, come da consegna, restituisce `Costruzione del grafo in corso`. 
 ```c
-//   NEL THREAD GESTORE
+// NEL THREAD GESTORE
 if(s == SIGINT){
    if(stato->fase == 0){
       fprintf(stdout,"Costruzione del grafo in corso\n");
@@ -54,13 +54,48 @@ if(s == SIGINT){
 ```
 
 prima della creazione della `named pipe` la fase viene cambiata da `0` a `1` facendo `stato.fase = 1`.
-Dopodiche il main inizia il proprio ciclo di lettura rappresentato da un `while` che contiene nella propria guardia il controllo `stato.fase != 2` 
 ```c
 stato.fase = 1; // aggiorno la fase del programma
 // CREAZIONE DELLA PIPE
+```
+Dopodiche il main inizia il proprio ciclo di lettura rappresentato da un `while` che contiene nella propria guardia il controllo `stato.fase != 2` 
+```c
 while(stato.fase != 2){
 // LETTURA DALLA PIPE CON CONTROLLI
 }
 ```
-Se in questa fase arriva il `SIGINT` il segnale viene gestito per 
+Se in questa fase arriva il `SIGINT` il segnale viene gestito dal thread aggiornando il valore a di `stato->fase` a `2` per poi fare break dal ciclo di attesa di `sigwait` e ritornare `NULL` per fare poi la `pthread_join` nel main per farlo terminare definitivamente.
+```c
+// NEL THREAD GESTORE
+else if(stato->fase == 1){
+   stato->fase = 2; //terminazione
+   break;
+}
+```
+Aggiornando il valore del del campo `fase` di `stato` si esce dal ciclo `while` e quindi si smette di leggere dalla pipe.
+Se invece il valore non viene aggiornato durante il ciclo di lettura, inviando il `SIGINT`, allora il programma si manda a se stesso il segnale, con `kill()` per far si che il thread gestore termini.
+```c
+if(stato.fase != 2){
+   kill(getpid(), SIGINT);// mando a me stesso il segnale per la join
+}
+```
+Come da consegna poi, vengono aspettati `20s`, vengono deallocate le strutture dati, viene fatta la `pthread_join` e viene distrutta la `named pipe` con la chiamata a `unlink`.
+```c
+// CODICE MAIN
+    xpthread_join(tg, NULL, QUI);
+    // Cancellazione della named pipe dal filesystem
+    if (unlink(nome) == -1) {
+        xtermina("eliminazione pipe fallita", QUI);
+    }
+    //dealloco array attori
+    for(int i = 0; i < messi; i++){
+        free(attori[i].nome); // libero nome attore
+        free(attori[i].cop); // libero array di coprotagonisti
+    }
+    free(attori); // libero array di attori
+    return 0;
+}
+```
+
+
 

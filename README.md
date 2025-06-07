@@ -46,16 +46,21 @@ Lo scopo di tale variabile è quello di tenere traccia delle fasi cronologiche d
 Inizialmente infatti la variabile, essendo nella fase iniziale, viene inizializzata a 0 e, in questo caso, se arrivasse un `SIGINT` il thread, come da consegna, restituisce `Costruzione del grafo in corso`. 
 ```c
 //   NEL THREAD GESTORE
-...codice
-
 if(s == SIGINT){
    if(stato->fase == 0){
       fprintf(stdout,"Costruzione del grafo in corso\n");
       fflush(stdout);// flusho per scrivere mentre il main esegue
    }
-
-...codice
 ```
 
-dal momento che va creata la pipe
+prima della creazione della `named pipe` la fase viene cambiata da `0` a `1` facendo `stato.fase = 1`.
+Dopodiche il main inizia il proprio ciclo di lettura rappresentato da un `while` che contiene nella propria guardia il controllo `stato.fase != 2` 
+```c
+stato.fase = 1; // aggiorno la fase del programma
+// CREAZIONE DELLA PIPE
+while(stato.fase != 2){
+// LETTURA DALLA PIPE CON CONTROLLI
+}
+```
+Se in questa fase arriva il `SIGINT` il segnale viene gestito per 
 

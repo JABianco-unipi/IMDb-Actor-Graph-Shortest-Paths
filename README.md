@@ -48,6 +48,7 @@ if(attori.containsKey(a.getcodice())) {
    attori.put(a.getcodice(), a);
 }
 ```
+
 # implementazione della coda FIFO nell'algoritmo della BFS
 Nel programma, la coda FIFO necessaria per la BFS è implementata tramite una lista collegata (linked list) di puntatori a elementi, dove ciascun elemento è una struttura (struct elem, alias elemento) che rappresenta un nodo della coda.
 Ogni elemento contiene:
@@ -100,7 +101,6 @@ if(s == SIGINT){
       fflush(stdout);// flusho per scrivere mentre il main esegue
    }
 ```
-
 prima della creazione della `named pipe` la fase viene cambiata da `0` a `1` facendo `stato.fase = 1`.
 ```c
 stato.fase = 1; // aggiorno la fase del programma
@@ -144,5 +144,4 @@ Come da consegna ,dopo che aver aspettato `20s`, vengono deallocate le strutture
     return 0;
 }
 ```
-
 

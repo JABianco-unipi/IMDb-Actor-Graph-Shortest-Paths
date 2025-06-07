@@ -9,7 +9,7 @@ if(controllo[2].trim().equals("\\N")){
    continue; // salta gli attori senza anno di nascita
 }
 ```
-nomi che non contengono le parole `actor` o actress` nel quinto campo (primaryProfession):
+nomi che non contengono le parole `actor` o `actress` nel quinto campo (primaryProfession):
 ```java
 boolean trovato = false;
 // controllo se l'attore è un attore o un'attrice

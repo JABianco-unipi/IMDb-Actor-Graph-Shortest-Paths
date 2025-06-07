@@ -105,7 +105,7 @@ prima della creazione della `named pipe`, la fase viene aggiornata da `0` a `1`:
 stato.fase = 1; // aggiorno la fase del programma
 // CREAZIONE DELLA PIPE
 ```
-Successivamente, il main entra in un ciclo di lettura controllato dalla condizione stato.fase != 2`: 
+Successivamente, il main entra in un ciclo di lettura controllato dalla condizione `stato.fase != 2`: 
 ```c
 while(stato.fase != 2){
 // LETTURA DALLA PIPE CON CONTROLLI

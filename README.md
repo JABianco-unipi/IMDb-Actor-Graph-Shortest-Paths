@@ -111,7 +111,7 @@ while(stato.fase != 2){
 // LETTURA DALLA PIPE CON CONTROLLI
 }
 ```
-Se durante questa fase arriva un `SIGINT`, il segnale viene intercettato dal thread gestore che aggiorna il valore di `stato->fase` a `2`, effettua il break dal ciclo di attesa su `sigwait`, e ritorna `NULL`, permettendo al main di eseguire la `pthread_join per la terminazione ordinata:
+Se durante questa fase arriva un `SIGINT`, il segnale viene intercettato dal thread gestore che aggiorna il valore di `stato->fase` a `2`, effettua il break dal ciclo di attesa su `sigwait`, e ritorna `NULL`, permettendo al main di eseguire la `pthread_join` per la terminazione ordinata:
 ```c
 // NEL THREAD GESTORE
 else if(stato->fase == 1){

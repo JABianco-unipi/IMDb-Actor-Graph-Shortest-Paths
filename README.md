@@ -84,7 +84,7 @@ void stampa_attori(elemento *e, attore *array, int dim, FILE *f){
 }
 ```
 # funzionamento del thread gestore di segnali
-Il `tgestore` nel programma gestisce i segnali facendo uso di una variabile di tipo `volatile sig_atomic_t` (per evitare race condition e ottimizzazioni indesiderate nel controllo del suo valore), contenuta all’interno della struct `segnale:
+Il `tgestore` nel programma gestisce i segnali facendo uso di una variabile di tipo `volatile sig_atomic_t` (per evitare race condition e ottimizzazioni indesiderate nel controllo del suo valore), contenuta all’interno della struct `segnale`:
 ```c
 typedef struct {
     volatile sig_atomic_t fase; // 0: costruzione grafo, 1: lettura pipe, 2: termina
@@ -120,7 +120,7 @@ else if(stato->fase == 1){
 }
 ```
 Aggiornando il valore del campo `fase` di `stato`, si esce dal ciclo `while` e quindi si interrompe la lettura dalla pipe.
-Tuttavia, se nessun `SIGINT` viene inviato mentre il programma è nella fase di lettura, una volta usciti dal ciclo while per fine lettura (ovvero quando la pipe viene chiusa dal lato di scrittura), il programma provvede autonomamente a inviare a sé stesso un segnale `SIGINT` tramite `kill()`, in modo da forzare la terminazione del thread gestore e consentire la pthread_join finale:
+Tuttavia, se nessun `SIGINT` viene inviato mentre il programma è nella fase di lettura, una volta usciti dal ciclo while per fine lettura (ovvero quando la pipe viene chiusa dal lato di scrittura), il programma provvede autonomamente a inviare a sé stesso un segnale `SIGINT` tramite `kill()`, in modo da forzare la terminazione del thread gestore e consentire la `pthread_join` finale:
 ```c
 if(stato.fase != 2){
    kill(getpid(), SIGINT);// mando a me stesso il segnale per la join

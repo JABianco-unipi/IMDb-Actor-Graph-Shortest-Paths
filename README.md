@@ -1,15 +1,15 @@
 # EsameLab2
 Consegna progetto Lab2
 # parsing delle righe del file di testo name.basics.tsv
-per memorizzare le informazioni prese dal file name.basics.tsv è stata utilizzata una `HashMap`che viene popolata classe `CreaGrafo` che, a ogni lettura di riga da file vine chiamata la funzione `split`che crea l'array di controllo che serve per capire se i campi sono esattamente 6 e per capire, come da indicazioni del testo, quali righe non vanno considerate.
-in particolare:
-nomi che contengono \N nel campo data di nascita (birthYear):
+per memorizzare le informazioni prese dal file name.basics.tsv è stata utilizzata una `HashMap`che viene popolata classe `CreaGrafo` che, a ogni lettura di riga da file vine chiamata la funzione `split`che crea l'array di controllo che serve per capire se i campi sono esattamente 6 e per capire, come da indicazioni del testo, quali righe non vanno considerate.  
+in particolare:  
+nomi che contengono `\N` nel campo data di nascita (birthYear):
 ```java
 if(controllo[2].trim().equals("\\N")){
    continue; // salta gli attori senza anno di nascita
 }
 ```
-nomi che non contengono le parole actor o actress nel quinto campo (primaryProfession):
+nomi che non contengono le parole `actor` o actress` nel quinto campo (primaryProfession):
 ```java
 boolean trovato = false;
 // controllo se l'attore è un attore o un'attrice

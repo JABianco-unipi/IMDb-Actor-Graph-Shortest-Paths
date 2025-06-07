@@ -35,4 +35,27 @@ void stampa_attori(elemento *e, attore *array, int dim, FILE *f){
     return;
 }
 ```
+# funzionamento del thread gestore di segnali
+Il `tgestore` nel programma gestisce i segnali tenendo presente di una varibile di tipo `volatile sig_atomic_t`(per evitare race condition e per evitare ottimizazioni nel controlo di essa) che è contenuta all'internio della struct `segnale`.
+```c
+typedef struct {
+    volatile sig_atomic_t fase; // 0: costruzione grafo, 1: lettura pipe, 2: termina
+} segnale;
+```
+Lo scopo di tale variabile è quello di tenere traccia delle fasi cronologiche del programma durante l'esecuzione.
+Inizialmente infatti la variabile, essendo nella fase iniziale, viene inizializzata a 0 e, in questo caso, se arrivasse un `SIGINT` il thread, come da consegna, restituisce `Costruzione del grafo in corso`. 
+```c
+//   NEL THREAD GESTORE
+...codice
+
+if(s == SIGINT){
+   if(stato->fase == 0){
+      fprintf(stdout,"Costruzione del grafo in corso\n");
+      fflush(stdout);// flusho per scrivere mentre il main esegue
+   }
+
+...codice
+```
+
+dal momento che va creata la pipe
 

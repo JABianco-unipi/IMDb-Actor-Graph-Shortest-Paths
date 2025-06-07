@@ -23,8 +23,31 @@ if(!trovato) {
    continue; // salta gli attori che non sono attori o attrici
 }
 ```
-
-
+Dopo le opportune verifiche sulle linee lette viene crata una nuova istanza della classe `Attori` che contine oltre al costruttore principale anche uno alternativo dedicato al caso in cui si voglia istanziare un nuovo attore a partire da una `String`(la linea letta da file. Qui infatti vengono riempite le variabili che rappresentano l'oggetto. 
+Viene rifatto il controllo sulla lunghezza della riga splittata e poi vengono riempite le varibili di istanza: `codice`, `nome`, `anno` e, chiaramente, viene dichiarata la collezione `coprotagonisti` che servirà per il raccogliere le informazioni provenienti dal parsing di title.principals.tsv.  
+Costruttore della classe `Attori`:  
+```java
+public Attori(String a){
+   String[] campi = a.split("\t");
+   if(campi.length != 6)
+      throw new IllegalArgumentException("Riga con !=6 campi: " + a);      
+   String cod = campi[0].trim();
+   cod = cod.substring(2); // rimuovo il prefisso nm
+   this.codice = Integer.parseInt(cod);
+   this.nome = campi[1].trim();
+   this.anno = Integer.parseInt(campi[2].trim());
+   this.coprotagonisti = new HashSet<Integer>();
+}
+```
+Alla fine se il codice dell'Attore appena stanziato, preso con `getcodice()`, non era già presenta nell'HashMap `attori` viene aggiunto alla collezione come si può vedere da qui:  
+```java
+Attori a = new Attori(Linea);
+if(attori.containsKey(a.getcodice())) {
+   System.out.println("Attore duplicato: " + a);
+} else {
+   attori.put(a.getcodice(), a);
+}
+```
 
 # implementazione della coda FIFO nell'algoritmo della BFS
 Nel programma, la coda FIFO necessaria per la BFS è implementata tramite una lista collegata (linked list) di puntatori a elementi, dove ciascun elemento è una struttura (struct elem, alias elemento) che rappresenta un nodo della coda.

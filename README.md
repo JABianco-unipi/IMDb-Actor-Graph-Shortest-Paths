@@ -79,7 +79,7 @@ if(stato.fase != 2){
    kill(getpid(), SIGINT);// mando a me stesso il segnale per la join
 }
 ```
-Come da consegna poi, vengono aspettati `20s`, vengono deallocate le strutture dati, viene fatta la `pthread_join` e viene distrutta la `named pipe` con la chiamata a `unlink`.
+Come da consegna ,dopo che aver aspettato `20s`, vengono deallocate le strutture dati, viene fatta la `pthread_join` e viene distrutta la `named pipe` con la chiamata a `unlink`.
 ```c
 // CODICE MAIN
     xpthread_join(tg, NULL, QUI);

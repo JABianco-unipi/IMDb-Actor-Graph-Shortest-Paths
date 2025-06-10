@@ -97,7 +97,6 @@ Inizialmente, la variabile viene impostata a 0 (fase iniziale); se in questa fas
 if(s == SIGINT){
    if(stato->fase == 0){
       fprintf(stdout,"Costruzione del grafo in corso\n");
-      fflush(stdout);// flusho per scrivere mentre il main esegue
    }
 ```
 prima della creazione della `named pipe`, la fase viene aggiornata da `0` a `1`:

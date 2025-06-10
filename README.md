@@ -84,7 +84,7 @@ void stampa_attori(elemento *e, attore *array, int dim, FILE *f){
 }
 ```
 # funzionamento del thread gestore di segnali
-Il `tgestore` nel programma gestisce i segnali facendo uso di una variabile di tipo `volatile sig_atomic_t` (per evitare race condition e ottimizzazioni indesiderate nel controllo del suo valore), contenuta all’interno della struct `segnale`:
+Il `tgestore` nel programma gestisce i segnali facendo uso di una variabile di tipo `volatile sig_atomic_t` (per evitare race condition e ottimizzazioni indesiderate nel controllo del suo valore), contenuta all’interno della struct `segnale` in `libreria.h`:
 ```c
 typedef struct {
     volatile sig_atomic_t fase; // 0: costruzione grafo, 1: lettura pipe, 2: termina

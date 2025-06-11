@@ -183,7 +183,7 @@ int main(int argc, char *argv[]){
     }
     // definizione di gestione segnali
     sigset_t mask;// creo maschera segnali
-    sigemptyset(&mask);           // <--- AGGIUNTA QUESTA RIGA
+    sigemptyset(&mask);// inizializzo la maschera
     sigaddset(&mask,SIGINT);// metto nella maschera il segnale da gestire
     pthread_sigmask(SIG_BLOCK,&mask,NULL); // blocco l'arrivo per tutti di SIGINT
     pthread_t tg;

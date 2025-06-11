@@ -26,7 +26,7 @@ void *tgestore(void *v){
             }
         }
     }
-    return NULL;
+    pthread_exit(NULL); // termino il thread
 }
 
 

@@ -1,5 +1,5 @@
 # EsameLab2
-Consegna progetto Lab2
+Consegna progetto Laboratorio
 # parsing delle righe del file di testo name.basics.tsv
 Per memorizzare le informazioni prese dal file name.basics.tsv è stata utilizzata una `HashMap`, che viene popolata all’interno della classe `CreaGrafo`. Ad ogni riga letta dal file viene chiamata la funzione `split`, che crea l’array di `controllo` utile per verificare se i campi sono esattamente 6 e per capire, come da indicazioni del testo, quali righe non devono essere considerate.
 In particolare:  
